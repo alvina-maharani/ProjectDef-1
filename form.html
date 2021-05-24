@@ -6,8 +6,9 @@
         }
         h2{
             font-family: cursive;
+            text-align: center;
         }
-        .form{
+        .box{
             background-color: rgb(164, 79, 243);
             height: 100%;
             padding: 100px;
@@ -15,8 +16,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 
-                        0 6px 20px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px 0 white;
             margin-top: 50px;
 
         }
@@ -29,8 +29,10 @@
             size: 500px;
             margin-bottom: 50px;
             border: 1px solid rgb(76, 2, 105);
+            border-radius: 15px;
             padding: 30px 0px;
             width: 250px;
+            text-align: center;
         }
         a{
             font-size: 20px;
@@ -42,6 +44,8 @@
             background: rgb(109, 46, 228);
             cursor: pointer;
             text-decoration: none;
+            align-items: center;
+            margin-left: 20px;
             
         }
         a:hover{
@@ -50,21 +54,17 @@
         }
     </style>
 </head>
-<body>
-    <center>
-    <div class="form">
+<body>  
+    <div class="box">
     <h2>Isi Data Berikut: </h2>
-    <form>
-        
+    <form>       
             <label for="name">NAMA :</label><br>
             <input type="text" id="name" name="name"><br>
             <label for="name">E-MAIL :</label><br>
             <input type="text" id="email" name="email">
-
     </form>
     <a href="home.html"> BACK</a>
-    <a href="#tingkat.html"> NEXT</a>
+    <a href="#"> NEXT</a>
     </div>
-    </center>
 </body>
 </html>
