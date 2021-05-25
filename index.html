@@ -1,0 +1,161 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body{
+            background-color: rgb(58, 33, 105) ;
+        }
+        .home{
+            padding: 10px;
+        }
+        img{
+            margin-bottom: 50px;
+            width: 50%;
+            animation: rotateIn;
+            animation-duration: 3s;
+        }
+        h1{
+            text-transform: uppercase;
+            text-align: center;
+            color: rgb(250, 249, 249);
+        }
+        h2{
+            font-family: cursive;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .box{
+            background-color: rgb(164, 79, 243);
+            height: 100%;
+            padding: 100px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 4px 8px 0 white;
+            margin-top: 50px;
+
+        }
+        input,label{
+            padding: 10px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        form{
+            size: 500px;
+            margin-bottom: 50px;
+            border: 3px solid rgb(76, 2, 105);
+            border-radius: 15px;
+            padding: 30px 0px;
+            width: 250px;
+            text-align: center;
+        }
+        button{
+            font-size: 20px;
+            font-weight: 500;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 15px;
+            background: rgb(109, 46, 228);
+            cursor: pointer;
+            text-decoration: none;
+            align-items: center;
+            margin-left: 20px;
+            
+        }
+        button:hover{
+            background: rgb(80, 50, 136) ;
+            font-weight: 600;
+        }
+        a{
+            font-size: 20px;
+            color: white;
+            padding: 20px 20px;
+            border: none;
+            border-radius: 15px;
+            background: rgb(109, 46, 228);
+            cursor: pointer;
+            text-decoration: none;
+            display: grid;
+            text-align: center;
+        }
+        a:hover{
+            background: white ;
+            color: rgb(109, 46, 228); ;
+            font-weight: 600;
+            
+        }
+        p{
+            text-align: center;
+            color: rgb(58, 4, 109);
+        }
+        
+    </style>
+    <script>
+        function home(){
+            document.getElementById("awal").style.display="none";
+            document.getElementById("demo1").style.display="block";
+        }
+        function balik(){
+            document.getElementById("demo1").style.display="none";
+            document.getElementById("awal").style.display="block";
+        }
+        function tingkat(){
+            document.getElementById("demo1").style.display="none";
+            document.getElementById("demo2").style.display="block";
+        }
+    </script>
+</head>
+<body>  
+    <div class="home" id="awal" style="display: block;">
+        <center>
+            <h1>WELCOME TO<br>ONLINE QUIZZIZ</h1>
+            <img src="gambar.png"><br>
+            <button onclick="home()">NEXT</button>
+        </center>
+    </div>
+
+    <div class="box" id="demo1" style="display: none;">
+    <h2>Isi Data Berikut: </h2>
+    <form>       
+            <label for="name">NAMA :</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="name">E-MAIL :</label><br>
+            <input type="text" id="email" name="email">
+    </form>  
+        <button onclick="balik()" > BACK</button>
+        <button onclick="tingkat()" id="next"> NEXT</button>
+    </div>
+
+    <div class="box" id="demo2" style="display: none;">
+        <h1 id="demo"></h1>
+        <h2>Pilih Level Kesulitan Kuis:</h2>
+        <a href="#easy.html">EASY</a><br>
+        <a href="#medium.html">MEDIUM</a><br>
+        <a href="hard.html">HARD</a><br>
+        <p id="demoo"></p>
+    </div>
+    <script>
+            document.getElementById("next").
+            addEventListener("click", function (){
+            var nama=document.getElementById("name").value;
+            var email=document.getElementById("email").value;
+            text=""
+            text1=""
+            if (nama == "" || email=="" ){
+                alert("mohon di isi dengan lengkap dan benar !!");
+                document.getElementById("demo1").style.display="block";
+                document.getElementById("demo2").style.display="none";
+            }
+            else{
+                text="Selamat Datang "+ nama +"!";
+                text1=email
+            }
+            document.getElementById("demo").innerHTML=text;
+            document.getElementById("demoo").innerHTML=text1;
+
+        });
+    </script>
+</body>
+</html>
