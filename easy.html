@@ -2,6 +2,89 @@
 <html>
     <head>
         <title>Soal Easy</title>
+	<style>
+	 body{
+    font-family: cursive;
+    font-size: 16px;
+    margin: 0px;
+    background: linear-gradient(to right top,grey,lightgrey);
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    min-height: 100vh;
+}
+
+.qa_box{
+    width: 700px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 5px 3px black;
+    border-radius: 15px;
+}
+
+.qa_header{
+    background-color: cornflowerblue ;
+    color:#fff;
+    display: block;
+    text-align: right;
+    padding: 15px 15px;
+    margin: -20px -20px 0px;
+    border-radius: 15px 15px 0 0;
+    font-size: 20px;
+}
+
+.qa_set{
+    display: none;
+}
+.qa_set .active{
+    display: block;
+}
+.qa_set h4{
+    margin: 0 0 15px;
+    font-size: 20px;
+}
+.qa_ans_row{
+    position:relative;
+    margin-bottom: 10px;
+}
+.qa_ans_row input{
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    cursor: pointer;
+}
+.qa_ans_row span{
+    display: block;
+    padding: 8px 15px;
+    background-color: gray;
+    border-radius: 15px;
+    transition: all 0.3s ease-out;
+}
+
+.qa_ans_row:hover span{
+    background-color: darkgray;
+}
+
+.qa_footer{
+    padding: 10px 0 0;
+    text-align: right;
+}
+.btn{
+    display: inline-block;
+    padding: 8px 20px;
+    background-color:mediumblue ;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.btn:hover{
+    background-color: #064484;
+}  
+	</style>
     </head>
     <body>
 
