@@ -210,5 +210,67 @@
                 <span class="btn" id="skip" onclick="skip()">Skip</span>
             </div>
         </div>
+<script>
+var id = 0;
+var score = 0;
+var timeOut = 15;
+var timer = setInterval(countdown,1000);
+var nextId = 2;
+var viewed = [1];
+var rand = Math.floor(Math.random()*10 + 1);
+
+function countdown() {
+    id = parseInt(document.getElementsByClassName("qa_setactive")[0].id)
+    if (timeOut == -1){
+        clearInterval(timer);
+        if (viewed.length < 10){
+            skip();
+            timer = setInterval(countdown,1000);
+        }
+    }
+    else{
+        document.getElementById("countdown").innerHTML = "Time Left : " + timeOut + " detik";
+    }
+    timeOut--;
+}
+
+function skip() {
+	while (viewed.includes(rand) && viewed.length != 10){
+		rand = Math.floor(Math.random()*10 + 1);
+	}
+	nextId = rand;
+	if (viewed.length == 10) {
+		viewed.push(11);
+	}
+	else{
+		viewed.push(nextId);
+	}
+    var jawaban = document.getElementsByName("a"+id);
+    timeOut = 15;
+    for (i = 0; i < jawaban.length; i++) {
+        if (jawaban[i].checked) {
+            if (jawaban[i].value == "benar"){
+                score += 10;
+            }
+        }
+    }
+    
+    if (viewed.length == 10){
+        document.getElementById("skip").innerHTML = "Finish";
+    }
+    else if(viewed.length == 11){
+        clearInterval(timer);
+        nextId = 11;
+        document.getElementById("qa_header").style.textAlign = "center";
+        document.getElementById("countdown").innerHTML = "SCORE";
+        document.getElementById("score").innerHTML = score;
+        document.getElementById(nextId).style.textAlign = "center";
+        document.getElementById("skip").style.display = "none";
+    }
+    console.log(id,nextId,viewed);
+    document.getElementById(id).className = "qa_set";
+    document.getElementById(nextId).className = "qa_setactive";
+}
+</script>
     </body>
 </html>
