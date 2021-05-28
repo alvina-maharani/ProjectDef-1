@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Kuis</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+            body{
+                font-size: 20px;
+                font-family: monospace;
+                background-color: pink;
+            }
+            #container{
+                margin : 20px auto;
+            background-color: #2c3e50;
+                height: 300px;
+                width : 700px;
+                border-radius: 5px;
+                box-shadow: 0px 5px 15px 0px;
+                position: relative;
+            }
+            #start{
+                font-size: 1.5em;
+                font-weight: bolder;
+                word-break: break-all;
+                width:250px;
+                height:50px;
+                border : 2px solid lightgrey;
+                text-align: center;
+                cursor: pointer;
+                position: absolute;
+                left:230px;
+                top:50px;
+                color : lightgrey;
+            }
+            #start:hover{
+                border: 3px solid lightseagreen;
+                color : lightseagreen;
+            }
+           
+            #question{
+                width:500px;
+                height : 125px;
+                position: absolute;
+                right:0;
+                top:0;
+            }
+            #question p{
+                margin : 0;
+                padding : 15px;
+                font-size: 1.25em;
+                color:#fff;
+            }
+            #choices{
+                width : 480px;
+                position: absolute;
+                right : 0;
+                top : 125px;
+                padding : 10px;
+                color:#fff;
+            }
+            .choice{
+                display: inline-block;
+                width : 135px;
+                text-align: center;
+                border : 1px solid grey;
+                border-radius: 5px;
+                cursor: pointer;
+                padding : 5px;
+            }
+            .choice:hover{
+                border : 2px solid grey;
+                font-weight: bold;
+            }
+            #timer{
+                position: absolute;
+                height : 100px;
+                width : 200px;
+                bottom : 0px;
+                text-align: center;
+            }
+            #counter{
+                font-size: 3em;
+            }
+            #btimeGauge{
+                width : 150px;
+                height : 10px;
+                border-radius: 10px;
+                background-color: lightgray;
+                margin-left : 25px;
+            }
+            #timeGauge{
+                height : 10px;
+                border-radius: 10px;
+                background-color: mediumseagreen;
+                margin-top : -10px;
+                margin-left : 25px;
+            }
+            #progress{
+                width : 500px;
+                position: absolute;
+                bottom : 0px;
+                right : 0px;
+                padding:5px;
+                text-align: right;
+            }
+            .prog{
+                width : 25px;
+                height : 25px;
+                border: 1px solid #000;
+                display: inline-block;
+                border-radius: 50%;
+                margin-left : 5px;
+                margin-right : 5px;
+            }
+            #scoreContainer{
+                margin : 20px auto;
+                background-color: white;
+                opacity: 0.8;
+                height: 300px;
+                width : 700px;
+                border-radius: 5px;
+                box-shadow: 0px 5px 15px 0px;
+                position: relative;
+                display: none;
+            }
+            #scoreContainer img{
+                position: absolute;
+                top:100px;
+                left:325px;
+            }
+            #scoreContainer p{
+                position: absolute;
+                display: block;
+                width : 59px;
+                height :59px;
+                top:130px;
+                left:325px;
+                font-size: 1.5em;
+                font-weight: bold;
+                text-align: center;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div id="container">
+            <div id="start">Kuis Dimulai !</div>
+            <div id="quiz" style="display: none">
+                <div id="question"></div>
+                <div id="choices">
+                    <div class="choice" id="A" onclick="checkAnswer('A')"></div>
+                    <div class="choice" id="B" onclick="checkAnswer('B')"></div>
+                    <div class="choice" id="C" onclick="checkAnswer('C')"></div>
+                </div>
+                <div id="timer">
+                    <div id="counter"></div>
+                    <div id="btimeGauge"></div>
+                    <div id="timeGauge"></div>
+                </div>
+                <div id="progress"></div>
+            </div>
+            <div id="scoreContainer" style="display: none"></div>
+        </div>
+        <script>
+            // select all elements
+            const start = document.getElementById("start");
+            const quiz = document.getElementById("quiz");
+            const question = document.getElementById("question");
+            
+            const choiceA = document.getElementById("A");
+            const choiceB = document.getElementById("B");
+            const choiceC = document.getElementById("C");
+            const counter = document.getElementById("counter");
+            const timeGauge = document.getElementById("timeGauge");
+            const progress = document.getElementById("progress");
+            const scoreDiv = document.getElementById("scoreContainer");
+            // create questions
+            let questions = [
+                {
+                    question : "untuk memberi nama atau title sebuah web/blog harus disesuaikan dengan ...",
+                    choiceA : "A. Desain Web/Blog",
+                    choiceB : "B. Browser web/blog",
+                    choiceC : "C. Isi web/blog",
+                    correct : "C"
+                },{
+                    question : "Hasil dari compile program java adalah",
+                    choiceA : "A. exe",
+                    choiceB : "B. bytecode",
+                    choiceC : "C. asm",
+                    correct : "B"
+                },{
+                    question : "CMS dapat memberikan pengaturan yang  fleksibilitas dalam",
+                    choiceA : "A. Workflow (alur kerja) dan Hak akses",
+                    choiceB : "B. Hak akses dan Workline",
+                    choiceC : "C. Alur Kerja dan Workline",
+                    correct : "A"
+                },{
+                    question : "Penulisan variabel pada skrip PHP diawali dengan..",
+                    choiceA : "A. $",
+                    choiceB : "B. @",
+                    choiceC : "C. &",
+                    correct : "A"
+                },{
+                    question : "Operator perhitungan berikut yang digunakan untuk menambahkan 1 nilai suatu variabel adalah ....",
+                    choiceA : "A. -",
+                    choiceB : "B. +",
+                    choiceC : "C. ++",
+                    correct : "C"
+                },{
+                    question : "Berikut ini yang bukan paket yang tersedia dalam aplikasi xampp adalah",
+                    choiceA : "A. PuTTY",
+                    choiceB : "B. MySQL",
+                    choiceC : "C. Filezilla",
+                    correct : "A"
+                },{
+                    question:"#inggris{Font-weight:bold;} 'bold' pada kode di samping merupakan sebuah..",
+                    choiceA : "A. Selector ID",
+                    choiceB : "B. Value",
+                    choiceC : "C. Property",
+                    correct : "B"
+                },{
+                    question : "Aplikasi server untuk membangun sebuah FTP adalah...",
+                    choiceA : "A. DHCP3",
+                    choiceB : "B. Proftpd",
+                    choiceC : "C. MysQL",
+                    correct : "B"
+                },{
+                    question : "situs-situs web yang saling berkaitan berkat weblog, atau secara total merupakan kumpulan weblog disebut dengan...",
+                    choiceA : "A. Blogsphere",
+                    choiceB : "B. Web Log",
+                    choiceC : "C. Blog",
+                    correct : "A"
+                },{
+                    question : "Ciri script dari pemrograman PHP adalah...",
+                    choiceA : "A. var",
+                    choiceB : "B. <php>",
+                    choiceC : "C. <?",
+                    correct : "C"
+                },{
+                    question : "Google memiliki layanan milis atau email grup berupa...",
+                    choiceA : "A. Groupserver",
+                    choiceB : "B. Googlegroup",
+                    choiceC : "C. Regroup",
+                    correct : "B"
+                },{
+                    question : "Berikut ini keunggulan dari PHP, kecuali...",
+                    choiceA : "A. Tidak mengenal Package",
+                    choiceB : "B. Tidak Berbayar",
+                    choiceC : "C. termasuk bahasa embedded",
+                    correct : "A"
+                },{
+                    question : "Yang pertama kali membuat bahasa pemrograman PHP pada tahun 1995 adalah ...",
+                    choiceA : "A. Steve Jobs",
+                    choiceB : "B. Rasmus lerdorf",
+                    choiceC : "C. Larry Page dan Sergey Brin",
+                    correct : "B"
+                },{
+                    question : "Port standar mySQL atau mysql.default_port pada xampp adalah...",
+                    choiceA : "A. 3306",
+                    choiceB : "B. 3308",
+                    choiceC : "C. 446",
+                    correct : "A"
+                },{
+                    question : "Kode html untuk membuat baris judul pada sebuah tabel adalah..",
+                    choiceA : "'A. <tr><th>'",
+                    choiceB : "'B. <tr><td>'",
+                    choiceC : "'C. <th><td>'",
+                    correct : "A"
+                }
+            ];
+            // create some variables
+            const lastQuestion = questions.length - 1;
+            let runningQuestion = 0;
+            let count = 0;
+            const questionTime = 10; // 10s
+            const gaugeWidth = 150; // 150px
+            const gaugeUnit = gaugeWidth / questionTime;
+            let TIMER;
+            let score = 0;
+            // render a question
+            function renderQuestion(){
+                let q = questions[runningQuestion];
+                
+                question.innerHTML = "<p>"+ q.question +"</p>";
+                choiceA.innerHTML = q.choiceA;
+                choiceB.innerHTML = q.choiceB;
+                choiceC.innerHTML = q.choiceC;
+            }
+            start.addEventListener("click",startQuiz);
+            // start quiz
+            function startQuiz(){
+                start.style.display = "none";
+                renderQuestion();
+                quiz.style.display = "block";
+                renderProgress();
+                renderCounter();
+                TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
+            }
+            // render progress
+            function renderProgress(){
+                for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
+                    progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
+                }
+            }
+            // counter render
+            function renderCounter(){
+                if(count <= questionTime){
+                    counter.innerHTML = count;
+                    timeGauge.style.width = count * gaugeUnit + "px";
+                    count++
+                }else{
+                    count = 0;
+                    // change progress color to red
+                    answerIsWrong();
+                    if(runningQuestion < lastQuestion){
+                        runningQuestion++;
+                        renderQuestion();
+                    }else{
+                        // end the quiz and show the score
+                        clearInterval(TIMER);
+                        scoreRender();
+                    }
+                }
+            }
+            // checkjawaban
+            function checkAnswer(answer){
+                if( answer == questions[runningQuestion].correct){
+                    // jika jawaban benar
+                    score++;
+                    // id jawaban benar akan muncul warna hijau
+                    answerIsCorrect();
+                }else{
+                    // jika jawaban salah
+                    // id jawaban salah akan muncul warna merah
+                    answerIsWrong();
+                }
+                count = 0;
+                if(runningQuestion < lastQuestion){
+                    runningQuestion++;
+                    renderQuestion();
+                }else{
+                    // kuis selesai dan muncul score
+                    clearInterval(TIMER);
+                    scoreRender();
+                }
+            }
+            // jawaban benar
+            function answerIsCorrect(){
+                document.getElementById(runningQuestion).style.backgroundColor = "#0f0";
+            }
+            // jawaban salah
+            function answerIsWrong(){
+                document.getElementById(runningQuestion).style.backgroundColor = "#f00";
+            }
+            // score render
+            function scoreRender(){
+                scoreDiv.style.display = "block";
+                
+                
+                const scorePerCent = Math.round(100 * score/questions.length);
+                
+               
+                scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
+            }
+        </script>
+    </body>
+</html>
