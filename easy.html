@@ -294,27 +294,27 @@
             </div>
         </div>
 <script>
-var id = 0;
-var score = 0;
-var timeOut = 15;
-var timer = setInterval(countdown,1000);
-var nextId = 2;
-var viewed = [1];
-var rand = Math.floor(Math.random()*10 + 1);
-
+var id = 0; //menyimpan nilai id
+var score = 0; //menyimpan nilai score
+var timeOut = 15; //timeout 15
+var timer = setInterval(countdown,1000); //setInterval memanggil fungsi countdown tiap 1 detik 
+var nextId = 0; //untuk menyimpan id selanjutnnya yang akan ditampilkan 
+var viewed = [1]; //untuk menampung id yang sudah ditampilkan
+var rand = Math.floor(Math.random()*10 + 1);//mengembalikan nilai acak yang menyimpan angka random untuk dijadikan id selanjutnnya yang akan ditampilkan 
+//update waktu tiap detik
 function countdown() {
-    id = parseInt(document.getElementsByClassName("qa_setactive")[0].id)
-    if (timeOut == -1){
-        clearInterval(timer);
-        if (viewed.length < 10){
-            skip();
-            timer = setInterval(countdown,1000);
+    id = parseInt(document.getElementsByClassName("qa_setactive")[0].id)//mengambil nilai id yang tampil sekarang dengan acuan class setactive 
+    if (timeOut == -1){//kondisi timeout = -1
+        clearInterval(timer);//metode menghapus interval yang ada pada variabel timer
+        if (viewed.length < 10){//kondisi jumlah soalpada viewed lebih kecil dari 10
+            skip();//lanjut fungsi skip
+            timer = setInterval(countdown,1000);//kembali ke timer awal
         }
     }
     else{
         document.getElementById("countdown").innerHTML = "Time Left : " + timeOut + " detik";
     }
-    timeOut--;
+    timeOut--;//memanggil fungsi timeout
 }
 
 function skip() {
