@@ -3,7 +3,7 @@
     <head>
         <title>Soal Easy</title>
         <style>
-          body{
+body{
     font-family: cursive;
     font-size: 16px;
     margin: 0px;
@@ -83,14 +83,33 @@
 }
 .btn:hover{
     background-color: #064484;
-}         
+}  
+
+a{
+    float: left;
+    font-size: 15px;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    background:royalblue;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin: 5px;
+    margin-left: 150px;
+}
+a:hover{
+    background: rgb(100, 128, 214) ;
+    font-weight: 600;
+            
+}
+
         </style>
-  
     </head>
     <body>
-
         <div class="qa_box">
-            <div id="qa_header" class="qa_header">
+            <div id="qa_header" class="qa_header"> 
                 <span id="countdown">Time Left : 15 detik</span>
             </div>
             <div class="qa_body">
@@ -288,63 +307,66 @@
                 </div>
                 <div id="11" class="qa_set">
                     <h1 id="score"></h1>
+                    <a href="easy.html">Reply</a>
+                    <a href="index.html">Quit</a>
                 </div>
             </div>  
             <div class="qa_footer" >
                 <span class="btn" id="skip" onclick="skip()">Skip</span>
             </div>
         </div>
-<script>
-var id = 0;
+<script type="text/javascript">
+var id = 0; 
 var score = 0;
 var timeOut = 15;
-var timer = setInterval(countdown,1000);
-var nextId = 2;
-var viewed = [1];
-var rand = Math.floor(Math.random()*10 + 1);
+var timer = setInterval(countdown,1000); 
+var nextId = 0;
+var viewed = [1]; 
+var rand = Math.floor(Math.random()*10 + 1 ); 
 
-function countdown() {
-    id = parseInt(document.getElementsByClassName("qa_setactive")[0].id)
+function countdown() { 
+    id = parseInt(document.getElementsByClassName("qa_setactive")[0].id) 
     if (timeOut == -1){
-        clearInterval(timer);
-        if (viewed.length < 10){
+        clearInterval(timer); 
+        if (viewed.length < 10){ 
             skip();
-            timer = setInterval(countdown,1000);
+            timer = setInterval(countdown,1000); 
         }
     }
+  
     else{
         document.getElementById("countdown").innerHTML = "Time Left : " + timeOut + " detik";
     }
-    timeOut--;
+    timeOut--; 
 }
 
-function skip() {
-	while (viewed.includes(rand) && viewed.length != 10){
+function skip() { /*fungsi skip*/
+	while (viewed.includes(rand) && viewed.length != 10){ 
 		rand = Math.floor(Math.random()*10 + 1);
 	}
-	nextId = rand;
-	if (viewed.length == 10) {
-		viewed.push(11);
+	nextId = rand; 
+	if (viewed.length == 10) { 
+		viewed.push(11); 
 	}
 	else{
-		viewed.push(nextId);
+		viewed.push(nextId); 
 	}
     var jawaban = document.getElementsByName("a"+id);
     timeOut = 15;
-    for (i = 0; i < jawaban.length; i++) {
+    for (i = 0; i < jawaban.length; i++) { 
         if (jawaban[i].checked) {
-            if (jawaban[i].value == "benar"){
-                score += 10;
+            if (jawaban[i].value == "benar"){ 
+                score += 10; 
             }
         }
     }
     
-    if (viewed.length == 10){
-        document.getElementById("skip").innerHTML = "Finish";
+    if (viewed.length == 10){ 
+        document.getElementById("skip").innerHTML = "Finish"; 
     }
-    else if(viewed.length == 11){
-        clearInterval(timer);
-        nextId = 11;
+    else if(viewed.length == 11){ 
+        clearInterval(timer); 
+        nextId = 11; 
         document.getElementById("qa_header").style.textAlign = "center";
         document.getElementById("countdown").innerHTML = "SCORE";
         document.getElementById("score").innerHTML = score;
@@ -352,9 +374,9 @@ function skip() {
         document.getElementById("skip").style.display = "none";
     }
     console.log(id,nextId,viewed);
-    document.getElementById(id).className = "qa_set";
-    document.getElementById(nextId).className = "qa_setactive";
-}  
+    document.getElementById(id).className = "qa_set"; 
+    document.getElementById(nextId).className = "qa_setactive"; 
+}
 </script>
     </body>
 </html>
