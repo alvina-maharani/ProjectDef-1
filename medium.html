@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quizziz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="start_btn"><button>Start Quiz</button></div>
+    <div class="info_box">
+        <div class="info-title"><span>Berikut Beberapa Aturan Kuis(MEDIUM): </span></div>
+        <div class="info-list">
+            <div class="info">1. Anda hanya akan mendapatkan waktu <span>10 Detik</span> per soal(15 SOAL).</div>
+            <div class="info">2. Setelah anda memilih jawaban, jawaban tersebut tidak bisa di batalkan.</div>
+            <div class="info">3. Anda dapat melanjutkan soal jika aktu mati/selesai memilih jawaban.</div>
+            <div class="info">4. Anda tidak bisa keluar dari kuis, jika belum menyelesaikan kuis tersebut .</div>
+            <div class="info">5. Anda akan mendapatkan point, jika jawaban anda.</div>
+        </div>
+        <div class="buttons">
+            <button class="quit">Exit Quiz</button>
+            <button class="restart">Continue</button>
+        </div>
+    </div>
+
+    <div class="quiz_box">
+        <header>
+            <div class="title">MEDIUM</div>
+            <div class="timer">
+                <div class="time_left_txt">Sisa Waktu</div>
+                <div class="timer_sec">05</div>
+            </div>
+            <div class="time_line"></div>
+        </header>
+        <section>
+            <div class="que_text">
+                <!-- memasukkan pertanyaan dari JavaScript -->
+            </div>
+            <div class="option_list">
+                <!-- memasukkan opsi dari JavaScript -->
+            </div>
+        </section>
+
+        <!-- footer of Quiz Box -->
+        <footer>
+            <div class="total_que">
+                <!-- memasukkan Nomor Hitungan Pertanyaan dari JavaScript -->
+            </div>
+            <button class="next_btn">Next</button>
+        </footer>
+    </div>
+
+    <!--Box Hasil Kuis -->
+    <div class="result_box">
+        <div class="icon">
+            <i class="fas fa-crown"></i>
+        </div>
+        <div class="complete_text">Kamu Telah Menyelesaikan Kuis!</div>
+        <div class="score_text">
+            <!-- memasukkan Hasil Skor dari JavaScript -->
+        </div>
+        <div class="buttons">
+            <button class="restart">Replay Quiz</button>
+            <button class="quit">Quit Quiz</button>
+        </div>
+    </div>
+
+    <script >
+        let quiz = [
+            {
+            numb: 1,
+            question: "untuk memberi nama atau title sebuah web/blog harus disesuaikan dengan ...",
+            answer: "C. Isi web/blog",
+            options: [
+            "A. Desain Web/Blog",
+            "B. Browser web/blog",
+            "C. Isi web/blog",
+            ]
+        },
+            {
+            numb: 2,
+            question: "Hasil dari compile program java adalah",
+            answer: "B. bytecode",
+            options: [
+            "A. exe",
+            "B. bytecode",
+            "C. asm"
+            ]
+        },
+            {
+            numb: 3,
+            question: "CMS dapat memberikan pengaturan yang  fleksibilitas dalam",
+            answer: "A. Workflow (alur kerja) dan Hak akses",
+            options: [
+            "A. Workflow (alur kerja) dan Hak akses",
+            "B. Hak akses dan Workline",
+            "C. Alur Kerja dan Workline",
+            "D. Workline"
+            ]
+        },
+            {
+            numb: 4,
+            question: "Penulisan variabel pada skrip PHP diawali dengan..",
+            answer: "A. $",
+            options: [
+            "A. $",
+            "B. @",
+            "C. &",
+            "D. ^"
+            ]
+        },
+            {
+            numb: 5,
+            question: "Operator perhitungan berikut yang digunakan untuk menambahkan 1 nilai suatu variabel adalah ....",
+            answer : "C. ++" ,
+            options: [
+            "A. -",
+            "B. +",
+            "C. ++",
+            "D. --",
+            ]
+        },
+        
+            {
+            numb: 6,
+            question: "Berikut ini yang bukan paket yang tersedia dalam aplikasi xampp adalah",
+            answer: "A. PuTTY",
+            options: [
+            "A. PuTTY",
+            "B. MySQL",
+            "C. Filezilla",
+            "D. FIREFOX"
+            ]
+        },
+        {
+            numb: 7,
+            question: "#inggris{Font-weight:bold;} 'bold' pada kode di samping merupakan sebuah..",
+            answer: "B. Value",
+            options: [
+            "A. Selector ID",
+            "B. Value",
+            "C. Property",
+            "D. Bar"
+            ]
+        },
+        {
+            numb: 8,
+            question: "Aplikasi server untuk membangun sebuah FTP adalah...",
+            answer: "B. Proftpd",
+            options: [
+            "A. DHCP3",
+            "B. Proftpd",
+            "C. MysQL",
+            "D. PHP"
+            ]
+        },
+        {
+            numb: 9,
+            question: "situs-situs web yang saling berkaitan berkat weblog, atau secara total merupakan kumpulan weblog disebut dengan...",
+            answer: "A. Blogsphere",
+            options: [
+            "A. Blogsphere",
+            "B. Web Log",
+            "C. Blog",
+            "D. Blogger"
+            ]
+        },
+        {
+            numb: 10,
+            question: "Ciri script dari pemrograman PHP adalah...",
+            answer: "C. <?",
+            options: [
+            "A. var",
+            "B. <php>",
+            "C. <?",
+            "D. </>"
+
+            ]
+        },
+        {
+            numb: 11,
+            question: "Google memiliki layanan milis atau email grup berupa...",
+            answer:"B. Googlegroup",
+            options: [
+            "A. Groupserver",
+            "B. Googlegroup",
+            "C. Regroup",
+            "D. Groupmail"
+            ]
+        },
+        {
+            numb: 12,
+            question: "Berikut ini keunggulan dari PHP, kecuali...",
+            answer: "A. Tidak mengenal Package",
+            options: [
+            "A. Tidak mengenal Package",
+            "B. Tidak Berbayar",
+            "C. termasuk bahasa embedded",
+            "D. semua benar"
+            ]
+        },
+        {
+            numb: 13,
+            question: "Yang pertama kali membuat bahasa pemrograman PHP pada tahun 1995 adalah ...",
+            answer: "b. Formulasi",
+            options: [
+            "A. Steve Jobs",
+            "B. Rasmus lerdorf",
+            "C. Larry Page dan Sergey Brin",
+            "D. Sergey Brin"
+            ]
+        },
+        {
+            numb: 14,
+            question: "Port standar mySQL atau mysql.default_port pada xampp adalah...",
+            answer: "A. 3306",
+            options: [
+            "A. 3306",
+            "B. 3308",
+            "C. 446",
+            "D. 355"
+            ]
+        },
+        {
+            numb: 15,
+            question: "Kode html untuk membuat baris judul pada sebuah tabel adalah..",
+            answer: "'A. <tr><th>'",
+            options: [
+            "'A. <tr><th>'",
+            "'B. <tr><td>'",
+            "'C. <th><td>'",
+            "D. <th><th>"
+            ]
+        }
+        ];
+        
+        const start_btn = document.querySelector(".start_btn button");
+        const info_box = document.querySelector(".info_box");
+        const exit_btn = info_box.querySelector(".buttons .quit");
+        const continue_btn = info_box.querySelector(".buttons .restart");
+        const quiz_box = document.querySelector(".quiz_box");
+        const result_box = document.querySelector(".result_box");
+        const option_list = document.querySelector(".option_list");
+        const time_line = document.querySelector("header .time_line");
+        const timeText = document.querySelector(".timer .time_left_txt");
+        const timeCount = document.querySelector(".timer .timer_sec");
+
+        const questions= quiz.sort(function(){
+            return 0.5 - Math.random();
+        });
+
+      
+        start_btn.onclick = ()=>{
+            info_box.classList.add("activeInfo");
+        }
+
+       
+        exit_btn.onclick = ()=>{
+            window.location.assign("index.html"); 
+        }
+
+        // jika tombol continueQuiz diklik
+        continue_btn.onclick = ()=>{
+            info_box.classList.remove("activeInfo"); 
+            quiz_box.classList.add("activeQuiz"); 
+            showQuetions(0); 
+            queCounter(0); 
+            startTimer(10); 
+            startTimerLine(0);
+        }
+
+        let timeValue =  10;
+        let que_count = 0;
+        let que_numb = 1;
+        let userScore = 0;
+        let counter;
+        let counterLine;
+        let widthValue = 0;
+
+        const restart_quiz = result_box.querySelector(".buttons .restart");
+        const quit_quiz = result_box.querySelector(".buttons .quit");
+
+        
+        restart_quiz.onclick = ()=>{
+            quiz_box.classList.add("activeQuiz"); 
+            result_box.classList.remove("activeResult"); 
+            timeValue = 10; 
+            que_count = 0;
+            que_numb = 1;
+            userScore = 0;
+            widthValue = 0;
+            showQuetions(que_count); 
+            queCounter(que_numb); 
+            clearInterval(counter); 
+            clearInterval(counterLine); 
+            startTimer(timeValue); 
+            startTimerLine(widthValue); 
+            timeText.textContent = "Sisa Waktu"; 
+            next_btn.classList.remove("show");
+        }
+
+        
+        quit_quiz.onclick = ()=>{
+            window.location.assign("index.html"); 
+        }
+
+        const next_btn = document.querySelector("footer .next_btn");
+        const bottom_ques_counter = document.querySelector("footer .total_que");
+
+       
+        next_btn.onclick = ()=>{
+            if(que_count < questions.length - 1){ 
+                que_count++; 
+                que_numb++; 
+                showQuetions(que_count); 
+                queCounter(que_numb); 
+                clearInterval(counter); 
+                clearInterval(counterLine); 
+                startTimer(timeValue); 
+                startTimerLine(widthValue);
+                timeText.textContent = "Sisa Waktu"; 
+                next_btn.classList.remove("show");
+            }else{
+                clearInterval(counter);
+                clearInterval(counterLine); 
+                showResult(); 
+            }
+        }
+
+       
+        function showQuetions(index){
+            const que_text = document.querySelector(".que_text");
+
+            
+            let que_tag = '<span>'+ questions[index].question +'</span>';
+            let option_tag = '<div class="option"><span>'+ questions[index].options[0] +'</span></div>'
+            + '<div class="option"><span>'+ questions[index].options[1] +'</span></div>'
+            + '<div class="option"><span>'+ questions[index].options[2] +'</span></div>'
+            + '<div class="option"><span>'+ questions[index].options[3] +'</span></div>';
+            que_text.innerHTML = que_tag; 
+            option_list.innerHTML = option_tag; 
+            
+            const option = option_list.querySelectorAll(".option");
+
+ 
+            for(i=0; i < option.length; i++){
+                option[i].setAttribute("onclick", "optionSelected(this)");
+            }
+        }
+      
+        let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
+        let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
+
+    
+        function optionSelected(answer){
+            clearInterval(counter);
+            clearInterval(counterLine);
+            let userAns = answer.textContent; 
+            let correcAns = questions[que_count].answer; 
+            const allOptions = option_list.children.length;
+            
+            if(userAns == correcAns){
+                userScore += 1; 
+                answer.classList.add("correct"); 
+                answer.insertAdjacentHTML("beforeend", tickIconTag); 
+                console.log("Correct Answer");
+                console.log("Your correct answers = " + userScore);
+            }else{
+                answer.classList.add("incorrect"); 
+                answer.insertAdjacentHTML("beforeend", crossIconTag); 
+                console.log("Wrong Answer");
+
+                for(i=0; i < allOptions; i++){
+                    if(option_list.children[i].textContent == correcAns){ 
+                        option_list.children[i].setAttribute("class", "option correct"); 
+                        option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag); 
+                        console.log("Auto selected correct answer.");
+                    }
+                }
+            }
+            for(i=0; i < allOptions; i++){
+                option_list.children[i].classList.add("disabled");
+            }
+            next_btn.classList.add("show"); 
+        }
+
+        function showResult(){
+            info_box.classList.remove("activeInfo"); 
+            quiz_box.classList.remove("activeQuiz"); 
+            result_box.classList.add("activeResult"); 
+            const scoreText = result_box.querySelector(".score_text");
+            if (userScore > 20){ 
+                let scoreTag = '<span>Selamat! 🎉, Kamu mendapatkan score <p>'+ userScore +'</p>/<p>'+ questions.length +'</p></span>';
+                scoreText.innerHTML = scoreTag+'<br> NILAI : '+userScore*4+'/100';  
+            }
+            else if(userScore > 15){ 
+                let scoreTag = '<span>nice 😎, Kamu mendapatkan score <p>'+ userScore +'</p>/<p>'+ questions.length +'</p></span>';
+                scoreText.innerHTML = scoreTag+'<br> NILAI : '+userScore*4+'/100';
+            }
+            else{ 
+                let scoreTag = '<span>Maaf 😐, kamu mendapatkan score <p>'+ userScore +'</p>/<p>'+ questions.length +'</p></span>';
+                scoreText.innerHTML = scoreTag+'<br> NILAI : '+userScore*4+'/100';
+            }
+        }
+
+        function startTimer(time){
+            counter = setInterval(timer, 1500);
+            function timer(){
+                timeCount.textContent = time;
+                time--; 
+                if(time < 9){ 
+                    let addZero = timeCount.textContent; 
+                    timeCount.textContent = "0" + addZero; 
+                }
+                if(time < 0){ 
+                    clearInterval(counter); 
+                    timeText.textContent = "Waktu Habis"; 
+                    const allOptions = option_list.children.length;
+                    let correcAns = questions[que_count].answer; 
+                    for(i=0; i < allOptions; i++){
+                        if(option_list.children[i].textContent == correcAns){ 
+                            option_list.children[i].setAttribute("class", "option correct"); 
+                            option_list.children[i].insertAdjacentHTML("beforeend", tickIconTag);
+                            console.log("Waktu Habis: Auto selected correct answer.");
+                        }
+                    }
+                    for(i=0; i < allOptions; i++){
+                        option_list.children[i].classList.add("disabled"); 
+                    }
+                    next_btn.classList.add("show"); 
+                }
+            }
+        }
+
+        function startTimerLine(time){
+            counterLine = setInterval(timer, 18);
+            function timer(){
+                time += 1; 
+                time_line.style.width = time + "px"; 
+                if(time > 500){ 
+                    clearInterval(counterLine); 
+                }
+            }
+        }
+        15
+        function queCounter(index){
+            let totalQueCounTag = '<span><p>'+ index +'</p> DARI <p>'+ questions.length +'</p>SOAL</span>';
+            bottom_ques_counter.innerHTML = totalQueCounTag; 
+        }
+
+    </script>
+
+</body>
+</html>
